@@ -1,0 +1,32 @@
+.loading {
+    color: white;
+    background-color: rgba(0, 0, 0, 0.7);
+    inset: 0 0 0 0;
+}
+  
+.spinning-loader {
+    border: 16px solid white;
+    border-top: 16px solid #464bff;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.btn-primary {
+    background-color: #464bff;
+}
+
+.btn-primary:hover {
+    background-color: #3035de;
+}
+
+.btn-primary:active {
+    background-color: #3035de !important;
+}
+  

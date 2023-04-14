@@ -2,6 +2,7 @@ import { FormEvent, useState } from "react";
 import Country from "./models/Country";
 import CountryProvider from "./services/CountryProvider";
 import isCountry from "./utility/isCountry";
+import "./App.css";
 
 const App = ({ countryProvider }: { countryProvider: CountryProvider }) => {
   const [countries, setCountries] = useState<Array<Country | string> | undefined>();
@@ -33,13 +34,14 @@ const App = ({ countryProvider }: { countryProvider: CountryProvider }) => {
         isLoading &&
         <div className="loading position-fixed d-flex flex-column justify-content-center align-items-center">
           <div className="spinning-loader m-1"/>
-          <h1 className="m-1">Loading</h1>
+          <h3 className="m-1">Loading</h3>
         </div>
       }
-      <div className="container">
-        <div className="row">
-          <div className="col d-none d-sm-block"/>
-          <div className="col p-3">
+      <div className="container min-vh-100 d-flex flex-column justify-content-center p-3">
+        <div className="row m-3 bg-white border rounded p-3">
+          <div className="col-1 col-sm-2 col-md-3 col-lg-4"/>
+          <div className="col-10 col-sm-8 col-md-6 col-lg-4 d-flex flex-column">
+            <h2 className="align-self-center">Query Countries</h2>
             <form onSubmit={e => handleSubmit(e)}>
               <div className="form-group mb-3">
                 <label>Continent</label>
@@ -62,53 +64,53 @@ const App = ({ countryProvider }: { countryProvider: CountryProvider }) => {
               </div>
             </form>
           </div>
-          <div className="col d-none d-sm-block"/>
+          <div className="col-1 col-sm-2 col-md-3 col-lg-4"/>
         </div>
-        <div className="row overflow-x-auto p-3">
         {
           countries !== undefined &&
-          <table className="table">
-            <thead>
-              <tr>
-                <th/>
-                <th>Name</th>
-                <th>Capital</th>
-                <th>Population</th>
-                <th>Subregion</th>
-                <th>Languages</th>
-                <th>Currencies</th>
-              </tr>
-            </thead>
-            <tbody>
-            {
-              countries.map((country, i) => 
+          <div className="row m-3 bg-white border rounded p-3 overflow-x-auto">
+            <table className="table">
+              <thead>
+                <tr>
+                  <th/>
+                  <th>Name</th>
+                  <th>Capital</th>
+                  <th>Population</th>
+                  <th>Subregion</th>
+                  <th>Languages</th>
+                  <th>Currencies</th>
+                </tr>
+              </thead>
+              <tbody>
               {
-                if (isCountry(country)) {
+                countries.map((country, i) => 
+                {
+                  if (isCountry(country)) {
+                    return (
+                      <tr key={country.name.common}>
+                        <td>{i + 1}</td>
+                        <td>{country.name.common}</td>
+                        <td>{country.capital.join(", ")}</td>
+                        <td>{country.population}</td>
+                        <td>{country.subregion}</td>
+                        <td>{country.languages.join(", ")}</td>
+                        <td>{country.currencies.map(e => e.name).join(", ")}</td>
+                      </tr>
+                    );
+                  }
                   return (
-                    <tr key={country.name.common}>
+                    <tr key={country}>
                       <td>{i + 1}</td>
-                      <td>{country.name.common}</td>
-                      <td>{country.capital.join(", ")}</td>
-                      <td>{country.population}</td>
-                      <td>{country.subregion}</td>
-                      <td>{country.languages.join(", ")}</td>
-                      <td>{country.currencies.map(e => e.name).join(", ")}</td>
+                      <td>{country}</td>
+                      <td colSpan={5}>No information found!</td>
                     </tr>
                   );
-                }
-                return (
-                  <tr key={country}>
-                    <td>{i + 1}</td>
-                    <td>{country}</td>
-                    <td colSpan={5}>No information found!</td>
-                  </tr>
-                );
-              })
-            }
-            </tbody>
-          </table>
+                })
+              }
+              </tbody>
+            </table>
+          </div>
         }
-        </div>
       </div>
     </>
   );
