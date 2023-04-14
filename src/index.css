@@ -11,3 +11,23 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.loading {
+  color: white;
+  background-color: rgba(0, 0, 0, 0.7);
+  inset: 0 0 0 0;
+}
+
+.spinning-loader {
+  border: 16px solid white;
+  border-top: 16px solid #0d6efd;
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
