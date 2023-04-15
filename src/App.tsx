@@ -47,7 +47,7 @@ const App = ({ countryProvider }: { countryProvider: CountryProvider }) => {
               <div className="form-group mb-3">
                 <label>Continent</label>
                 <select className="form-control" name="continent" title="Continent" required>
-                  { Object.entries(config.CONTINENTS).map(continent => <option value={continent[0]}>{continent[1]}</option>) }
+                  { Object.entries(config.CONTINENTS).map(continent => <option key={continent[0]} value={continent[0]}>{continent[1]}</option>) }
                 </select>
               </div>
               <div className="form-group mb-3">
