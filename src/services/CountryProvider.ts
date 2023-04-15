@@ -4,7 +4,7 @@ import getMultipleRandomElements from "../utility/getMultipleRandomElements";
 
 export default class CountryProvider {
     private graphqlClient = new ApolloClient({
-        uri: 'https://countries.trevorblades.com/graphql',
+        uri: process.env.REACT_APP_GRAPHQL_API,
         cache: new InMemoryCache(),
     });
     private getCountriesQuery = gql`query GetCountries($continent: String) {
@@ -14,7 +14,7 @@ export default class CountryProvider {
     }`;
     
     private async getCountry(name: string): Promise<Country | string> {
-        const response = await fetch(`https://restcountries.com/v3.1/name/${name}?fields=name,capital,population,currencies,subregion,languages`);
+        const response = await fetch(`${process.env.REACT_APP_REST_API}/name/${name}?fields=name,capital,population,currencies,subregion,languages`);
 
         if (!response.ok) {
             return name;
