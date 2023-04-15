@@ -1,3 +1,8 @@
+:root {
+    --color-purple: #464bff;
+    --color-blue: #3035de;
+}
+
 .loading {
     color: white;
     background-color: rgba(0, 0, 0, 0.7);
@@ -19,14 +24,14 @@
 }
 
 .btn-primary {
-    background-color: #464bff;
+    background-color: var(--color-purple) !important;
 }
 
 .btn-primary:hover {
-    background-color: #3035de;
+    background-color: var(--color-blue) !important;
 }
 
 .btn-primary:active {
-    background-color: #3035de !important;
+    background-color: var(--color-blue) !important;
 }
   
