@@ -3,6 +3,7 @@ import Country from "./models/Country";
 import CountryProvider from "./services/CountryProvider";
 import isCountry from "./utility/isCountry";
 import "./App.css";
+import config from "./config.json";
 
 const App = ({ countryProvider }: { countryProvider: CountryProvider }) => {
   const [countries, setCountries] = useState<Array<Country | string> | undefined>();
@@ -46,18 +47,12 @@ const App = ({ countryProvider }: { countryProvider: CountryProvider }) => {
               <div className="form-group mb-3">
                 <label>Continent</label>
                 <select className="form-control" name="continent" title="Continent" required>
-                  <option value="AF">Africa</option>
-                  <option value="AN">Antarctica</option>
-                  <option value="AS">Asia</option>
-                  <option value="EU">Europe</option>
-                  <option value="NA">North America</option>
-                  <option value="OC">Oceania</option>
-                  <option value="SA">South America</option>
+                  { Object.entries(config.CONTINENTS).map(continent => <option value={continent[0]}>{continent[1]}</option>) }
                 </select>
               </div>
               <div className="form-group mb-3">
                 <label>Result Count</label>
-                <input className="form-control" type="number" name="count" min={2} max={10} defaultValue={2} required title="Result Count"/>
+                <input className="form-control" type="number" name="count" min={config.MIN_COUNTRY_COUNT} max={config.MAX_COUNTRY_COUNT} defaultValue={config.DEFAULT_COUNTRY_COUNT} required title="Result Count"/>
               </div>
               <div className="form-group">
                 <button className="btn btn-primary w-100" type="submit">Submit</button>

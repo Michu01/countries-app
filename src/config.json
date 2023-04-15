@@ -1,0 +1,14 @@
+{
+    "MIN_COUNTRY_COUNT": 2,
+    "MAX_COUNTRY_COUNT": 10,
+    "DEFAULT_COUNTRY_COUNT": 5,
+    "CONTINENTS": {
+        "AF": "Africa",
+        "AN": "Antarctica",
+        "AS": "Asia",
+        "EU": "Europe",
+        "NA": "North America",
+        "OC": "Oceania",
+        "SA": "South America"
+    }
+}
